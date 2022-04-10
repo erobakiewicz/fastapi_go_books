@@ -1,5 +1,3 @@
-from typing import List
-
 from app.crud.base import CRUDBase
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
@@ -17,9 +15,5 @@ class CRUDBook(CRUDBase[Book, BookCreate, BookUpdate]):
         db.refresh(db_obj)
         return db_obj
 
-    def get_all(self, db: Session, *, skip: int = 0, limit: int = 100) -> List[Book]:
-        return (
-            db.query(self.model).offset(skip).limit(limit).all()
-        )
 
 book = CRUDBook(Book)

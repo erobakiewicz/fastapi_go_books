@@ -1,7 +1,6 @@
 import datetime
-from typing import Optional
-
 from pydantic import BaseModel
+
 
 class BookBase(BaseModel):
     title: str
@@ -13,18 +12,23 @@ class BookBase(BaseModel):
     avg_rating: float
     ratings_count: int
 
+
 class BookCreate(BookBase):
     pass
 
+
 class BookUpdate(BookBase):
     pass
+
 
 class BookInDBBase(BookBase):
     class Config:
         orm_mode = True
 
+
 class Book(BookInDBBase):
     pass
+
 
 class BookInDB(BookInDBBase):
     pass
