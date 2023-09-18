@@ -10,7 +10,7 @@ router = APIRouter()
 
 
 @router.get("/", response_model=List[schemas.Item])
-def read_items(
+async def read_items(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
@@ -29,7 +29,7 @@ def read_items(
 
 
 @router.post("/", response_model=schemas.Item)
-def create_item(
+async def create_item(
     *,
     db: Session = Depends(deps.get_db),
     item_in: schemas.ItemCreate,
@@ -43,7 +43,7 @@ def create_item(
 
 
 @router.put("/{id}", response_model=schemas.Item)
-def update_item(
+async def update_item(
     *,
     db: Session = Depends(deps.get_db),
     id: int,
@@ -63,7 +63,7 @@ def update_item(
 
 
 @router.get("/{id}", response_model=schemas.Item)
-def read_item(
+async def read_item(
     *,
     db: Session = Depends(deps.get_db),
     id: int,
@@ -81,7 +81,7 @@ def read_item(
 
 
 @router.delete("/{id}", response_model=schemas.Item)
-def delete_item(
+async def delete_item(
     *,
     db: Session = Depends(deps.get_db),
     id: int,

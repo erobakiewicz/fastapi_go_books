@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/", response_model=List[schemas.Book])
-def get_books(
+async def get_books(
         db: Session = Depends(deps.get_db),
         skip: int = 0,
         limit: int = 100,
@@ -25,7 +25,7 @@ def get_books(
 
 
 @router.post("/", response_model=schemas.Book)
-def create_book(
+async def create_book(
         *,
         db: Session = Depends(deps.get_db),
         book_in: schemas.BookCreate,
@@ -41,7 +41,7 @@ def create_book(
 
 
 @router.put("/{id}", response_model=schemas.Book)
-def update_book(
+async def update_book(
         *,
         db: Session = Depends(deps.get_db),
         id: int,
@@ -59,7 +59,7 @@ def update_book(
 
 
 @router.get("/{id}", response_model=schemas.Book)
-def read_book(
+async def read_book(
         *,
         db: Session = Depends(deps.get_db),
         id: int,
@@ -71,7 +71,7 @@ def read_book(
 
 
 @router.delete("/{id}", response_model=schemas.Book)
-def delete_book(
+async def delete_book(
         *,
         db: Session = Depends(deps.get_db),
         id: int

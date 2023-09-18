@@ -12,7 +12,7 @@ router = APIRouter()
 
 
 @router.post("/test-celery/", response_model=schemas.Msg, status_code=201)
-def test_celery(
+async def test_celery(
     msg: schemas.Msg,
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
@@ -24,7 +24,7 @@ def test_celery(
 
 
 @router.post("/test-email/", response_model=schemas.Msg, status_code=201)
-def test_email(
+async def test_email(
     email_to: EmailStr,
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
